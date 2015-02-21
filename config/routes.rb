@@ -1,22 +1,13 @@
 Rails.application.routes.draw do
   devise_for :users
-  get 'games/index'
+resources :games
 
-  get 'games/show'
-
-  get 'games/new'
-
-  get 'games/create'
-
-  get 'games/edit'
-
-  get 'games/update'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+   root 'games#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
