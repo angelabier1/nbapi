@@ -11,13 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150222022657) do
+ActiveRecord::Schema.define(version: 20150222052330) do
 
   create_table "bets", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "amount"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "game_id"
+    t.string   "result"
+    t.integer  "selected_team"
   end
 
   add_index "bets", ["user_id"], name: "index_bets_on_user_id"

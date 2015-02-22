@@ -8,26 +8,28 @@
 
 SportsDataApi.set_key(:nba, '7qwpn3fch79ncvperz62uxtj')
 
-teams = SportsDataApi::Nba.teams
-# season = SportsDataApi::Nba.schedule(2014, :REG)
+# teams = SportsDataApi::Nba.teams
 
-teams.each do |team|
-		   Team.create(name: team.name, alias: team.alias, market: team.market)
-		     sleep(1)
-end
+#
+# teams.each do |team|
+# 		   Team.create(name: team.name, alias: team.alias, market: team.market)
+# 		     sleep(1)
+# end
+ Game.delete_all
+season = SportsDataApi::Nba.schedule(2014, :REG)
+
+season.games.each do |game|
 
 
+		box = SportsDataApi::Nba.game_summary(game.id)
+		home_team_id = Team.where(name: box.home_team.name).pluck(:id).first
+		away_team_id = Team.where(name: box.away_team.name).pluck(:id).first
 
-
-# season.games.each do |game|
-# 		puts "getting data for the games #{game.away.name} at #{game.home.name}"
-#  		home_team_id = Team.where(alias: game.home.alias).pluck(:id).first
-#  		away_team_id = Team.where(alias: game.away.alias).pluck(:id).first
-#  		Game.create(date: game.scheduled, home_team_id: home_team_id,
-# 		            away_team_id: away_team_id, home_team_score: game.home.points,
-#  		            away_team_score: game.away.points, status: game.status)
-#  		sleep(1)
-#  	end
+		Game.create(date: game.scheduled, home_team_id: home_team_id,
+		            away_team_id: away_team_id, home_team_score: box.home_team.points,
+		            away_team_score: box.away_team.points, status: game.status)
+		sleep(1)
+	end
 
 
 
