@@ -49,6 +49,8 @@ group :development, :test do
 	gem 'binding_of_caller'
 
 	gem 'awesome_print'
+
+  gem 'pry-rails', '~> 0.3.3'
 end
 
 
@@ -59,3 +61,4 @@ gem "figaro"
 
 gem 'bootstrap-sass'
 
+ gem 'has_scope'

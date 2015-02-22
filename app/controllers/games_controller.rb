@@ -15,8 +15,13 @@ class GamesController < ApplicationController
 	end
 
 	def show
+		@comments = @game.comments.all
+		@comment = @game.comments.build
   end
 
+	def upcoming
+		@games = Game.upcoming
+	end
 
   def edit
   end

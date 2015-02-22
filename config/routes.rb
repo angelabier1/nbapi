@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
+  get 'pages/home'
+
   devise_for :users
-resources :games, :teams
+
+  resources :bets
+
+resources :games do
+	resources :comments
+end
+  resources :teams
 
 
 

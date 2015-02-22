@@ -1,2 +1,3 @@
 <h1><%= @game.home%> vs <%= @game.away %></h1>
 <h3>Date: <%=@game.date.strftime("%m-%d-%Y") %></h3>
+   <%= render 'comments/form', game: game %>

@@ -1,6 +1,11 @@
 class Game < ActiveRecord::Base
 	belongs_to :home_team, class: "Team"
 	belongs_to :away_team, class: "Team"
+	has_many :comments
+	has_many :bets
+	scope :upcoming, -> {where(status: 'scheduled' )}
+	scope :by_status, -> {where(status: status) if status.present?}
+	has_many :most_recent_comments, -> { order('id DESC').limit(10) }, class_name: 'Comment'
 
 
 	def winner
@@ -10,6 +15,9 @@ class Game < ActiveRecord::Base
 			away_team
 		end
 	end
+
+
+
 
 	def home
 		Team.find(home_team_id).to_s
