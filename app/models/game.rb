@@ -11,6 +11,14 @@ class Game < ActiveRecord::Base
 		end
 	end
 
+	def home
+		Team.find(home_team_id).to_s
+	end
+
+	def away
+		Team.find(away_team_id).to_s
+	end
+
 
 def matchup
 	if home_team_id != nil && away_team_id !=nil
