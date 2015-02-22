@@ -47,10 +47,15 @@ group :development, :test do
 	gem 'meta_request'
 
 	gem 'binding_of_caller'
+
+	gem 'awesome_print'
 end
 
 
 gem 'devise'
 gem 'sports_data_api', :git =>'https://github.com/TheIronYard--Orlando/sports_data_api.git'
 
+gem "figaro"
+
+gem 'bootstrap-sass'
 
