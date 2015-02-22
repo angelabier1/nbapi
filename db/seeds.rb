@@ -7,10 +7,10 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 SportsDataApi.set_key(:nba, SPORTS_DATA_API)
 
-hierarchy = SportsDataApi::Nba.hierarchy
+teams = SportsDataApi::Nba.teams
 schedule = SportsDataApi::Nba.schedule(2014, :REG)
 
-hierarchy.conferences.each do |conference|
+teams.conferences.each do |conference|
 	conference.divisions.each do |division|
 	     division.teams.each do |team|
 		   Team.create(name: "#{team.market team.name}", alias: team.alias)
@@ -20,7 +20,7 @@ hierarchy.conferences.each do |conference|
 end
 
 schedule.games.each do |game|
-		puts "getting data for the game #{game.away.name} at #{game.home.name}"
+		puts "getting data for the games #{game.away.name} at #{game.home.name}"
  		home_team_id = Team.where(alias: game.home.alias).pluck(:id).first
  		away_team_id = Team.where(alias: game.away.alias).pluck(:id).first
  		Game.create(date: game.scheduled, home_team_id: home_team_id,
