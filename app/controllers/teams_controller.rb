@@ -11,6 +11,11 @@ class TeamsController < ApplicationController
 
 	def create
 		@team = Team.create(team_params)
+		if @team.save
+			redirect_to root_path
+		else
+			render 'new'
+		end
 
 	end
 
