@@ -7,6 +7,9 @@ Rails.application.routes.draw do
 
 resources :games do
 	resources :comments
+	member do
+
+	end
 end
   resources :teams
 
